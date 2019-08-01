@@ -17,7 +17,9 @@
                 <tbody>
                     @foreach($tasks as $task)
                         <tr>
-                            <td>{{$task->taskToDo}}</td>
+                            <td>
+                                <a href="{{route('tasks.show', $task->id)}}" style="color:white">{{$task->taskToDo}}</a>
+                            </td>
                             <td>{{$task->toDoBy}}</td>
                             <td>{{$task->isDone ? 'yes' : 'no'}}</td>
                             <td>
