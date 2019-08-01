@@ -6,15 +6,13 @@
     @endif
 
     <div class="row">
-        <div class="col col-md-6">
+        <div class="col">
             <h3>Task list</h3>
             <table class="table table-dark">
                 <thead>
                     <td>Task</td>
                     <td>To do by</td>
                     <td>Is Done?</td>
-                    <td></td>
-                    <td></td>
                 </thead>
                 <tbody>
                     @foreach($tasks as $task)
@@ -40,7 +38,6 @@
             </table>
         </div>
     </div>
-    <a href="{{ route('tasks.create') }}"><button class="btn btn-outline-primary" type="button">New Task</button></a>
-
+    <a href="{{route('tasks.create')}}"><button class="btn btn-outline-primary" type="button">New Task</button></a>
 
 @endsection

@@ -31,7 +31,7 @@ class TaskController extends Controller
         ]);
 
         $task->save();
-        return redirect('/tasks')->with('success', 'Task created successfully.');
+        return redirect('/tasks')->with('success', 'Task created.');
     }
 
     public function show($id)
@@ -41,12 +41,25 @@ class TaskController extends Controller
 
     public function edit($id)
     {
-
+        $task = Task::find($id);
+        return view('tasks.edit')->with('task', $task);
     }
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'taskToDo' => 'required',
+            'toDoBy' => 'required|date'
+        ]);
 
+        $task = Task::find($id);
+
+        $task->taskToDo = $request->get('taskToDo');
+        $task->toDoBy = $request->get('toDoBy');
+        $task->isDone = !is_null($request->get('isDone'))? true : false;
+
+        $task->save();
+        return redirect('/tasks')->with('success', 'Task updated.');
     }
 
     public function destroy($id)
