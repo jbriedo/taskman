@@ -20,7 +20,18 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'taskToDo' => 'required',
+            'toDoBy' => 'required|date'
+        ]);
 
+        $task = new Task([
+            'taskToDo' => $request->get('taskToDo'),
+            'toDoBy' => $request->get('toDoBy'),
+        ]);
+
+        $task->save();
+        return redirect('/tasks')->with('success', 'Task created successfully.');
     }
 
     public function show($id)
